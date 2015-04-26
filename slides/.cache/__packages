@@ -1,0 +1,13 @@
+base
+devtools
+slidify
+shiny
+slidifyLibraries
+rCharts
+tidyr
+dplyr
+ggplot2
+XML
+data.table
+reshape2
+knitr

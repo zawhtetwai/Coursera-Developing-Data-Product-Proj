@@ -1,0 +1,84 @@
+---
+title       : Life Expectancy Analysis
+subtitle    : 
+author      : ZAW HTET WAI
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, shiny, interactive, bootstrap}
+ext_widgets : {rCharts: ["libraries/nvd3"]}
+mode        : selfcontained # {standalone, draft}
+---
+
+```{r setup, message = F, echo = F}
+require(rCharts)
+options(RCHART_WIDTH = 800, RCHART_HEIGHT = 400)
+knitr::opts_chunk$set(comment = NA, results = 'asis', tidy = F, message = F)
+```
+
+
+## Background
+
+ - To give insight on life expectancy of all countries over the world from year 1990 to 2012.
+ - Data are obtained from from the <b>Global Health Observatory (GHO)</b>.
+ - Source: http://apps.who.int/gho/data/node.main.3?lang=en
+ - For Self-Service App: https://zawhtet.shinyapps.io/LifeExp
+
+---
+
+## Preparation
+- Data are cleansed and formatted as 2 sets.
+- One for at birth and another for at age 60.
+
+```{r, echo=FALSE, warning=FALSE}
+source("data_process.R")
+birth_exp <- load_birth_exp()
+sixty_exp <- load_sixty_exp()
+head(birth_exp, 5)
+head(sixty_exp, 5)
+```
+
+---
+
+## Life Expectancy Analysis at Birth
+- South Africa (1990-2012)
+
+```{r results = 'asis', message = F, echo = F}
+source("data_process.R")
+birth_exp <- load_birth_exp()
+selected <- 'South Africa'
+    birth_exp_country <- subset(birth_exp, Country == selected & Year %in% seq(1990, 2012, 1))
+    h1 <- hPlot(
+      x = "Year", 
+      y = "lex", 
+      group = "Gender", 
+      data = birth_exp_country, 
+      type = "line")
+
+    h1$colors(c("red", "blue"))
+    h1$yAxis(title = list(enabled = TRUE, text = 'Life Expectancy at Birth'))
+    h1
+```
+
+---
+
+## Life Expectancy Analysis at Age 60
+- South Africa (1990-2012)
+
+```{r results = 'asis', message = F, echo = F}
+source("data_process.R")
+sixty_exp <- load_sixty_exp()
+selected <- 'South Africa'
+    sixty_exp_country <- subset(sixty_exp, Country == selected & Year %in% seq(1990, 2012, 1))
+    h2 <- hPlot(
+      x = "Year", 
+      y = "lex", 
+      group = "Gender", 
+      data = sixty_exp_country, 
+      type = "line")
+
+    h2$colors(c("orange", "green"))
+    h2$yAxis(title = list(enabled = TRUE, text = 'Life Expectancy at 60'))
+    h2
+```
