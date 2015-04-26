@@ -13,8 +13,8 @@ mode        : selfcontained # {standalone, draft}
 
 ```{r setup, message = F, echo = F}
 require(rCharts)
-options(RCHART_WIDTH = 800, RCHART_HEIGHT = 400)
-knitr::opts_chunk$set(comment = NA, results = 'asis', tidy = F, message = F)
+options(RCHART_WIDTH = 800, RCHART_HEIGHT = 400, rcharts.mode = 'iframe', rcharts.cdn = TRUE)
+knitr::opts_chunk$set(comment = NA, tidy = F, message = F)
 ```
 
 
@@ -58,7 +58,7 @@ selected <- 'South Africa'
 
     h1$colors(c("red", "blue"))
     h1$yAxis(title = list(enabled = TRUE, text = 'Life Expectancy at Birth'))
-    h1
+    h1$show('iframesrc', cdn  = TRUE)
 ```
 
 ---
@@ -80,5 +80,6 @@ selected <- 'South Africa'
 
     h2$colors(c("orange", "green"))
     h2$yAxis(title = list(enabled = TRUE, text = 'Life Expectancy at 60'))
-    h2
+    h2$show('iframesrc', cdn = TRUE)
+
 ```
