@@ -14,8 +14,8 @@ shinyUI(fluidPage(
    helpText("Step. 1: Choose the country you are interested. "), 
    helpText("Step. 2: Move the slider for the year range (between 1990 and 2012)."), 
    helpText("There are two plots in the main screen (right). ",
-		"Top is for Life Expectancy at Birth",
-		"Bottom is for Life Expectancy at 60"),
+		"Top is for Life Expectancy at Birth.",
+		"Bottom is for Life Expectancy at 60."),
    helpText("Data for this project are obtained ", 
             "from the Global Health Observatory (GHO).", 
             "http://apps.who.int/gho/data/node.main.3?lang=en")
